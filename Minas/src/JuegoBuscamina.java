@@ -1,7 +1,5 @@
 
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 /**
  *
@@ -36,23 +34,18 @@ public class JuegoBuscamina {
         return tamanio;
     }
     private static boolean esInteger(Scanner entrada){
-        return (entrada.hasNextInt());          
-                  
+        return (entrada.hasNextInt());                     
     }
             
     public static void main(String []args){   
-      /*int tamanio;
+      int tamanio;
       int bombas;
       tamanio=preguntaTamanio();
       bombas=preguntaNumeroBombas();
-      Minas miMina = new Minas(tamanio);
+      Minas miMina = new Minas(tamanio,tamanio);
       miMina.cargarUnNumeroDeBombas(bombas);
-      miMina.jugarMinas();*/
-      VentanaBuscamina v= new VentanaBuscamina();
-      v.setVisible(true);
-        
+      miMina.jugarMinas();         
       
-    }
-    
+    }    
     
 }

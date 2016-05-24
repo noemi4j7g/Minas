@@ -8,26 +8,17 @@
  *
  * @author Noemi Guzman
  */
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-
 public class VentanaBuscamina extends javax.swing.JFrame implements ActionListener {
 
     Minas miJuego;
+    HelpValidaciones validador;
     int casillasJugadas;
     boolean terminoJuego;
     int anchoTablero;
     int altoTablero;
-    int nBombas;
-   
-
+    int nBombas;  
     /**
      * Creates new form VentanaBuscamina
      */
@@ -35,14 +26,14 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
         initComponents();
         anchoTablero=9;
         altoTablero=9;
-        nBombas=10;
+        nBombas=10;        
     }
 
     public void actionPerformed(ActionEvent e) {
         
         Casilla jugada = (Casilla) e.getSource();
-        jugada.setColor();
-        jugada.mostrarValor();       
+        jugada.mostrarJugador();
+            
         if (jugada.esBomba()) {
             terminoJuego=true;    
             System.out.println("Perdio el juego"  );  
@@ -69,10 +60,10 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
     public boolean continuarJuego() {
         return (casillasJugadas < anchoTablero * altoTablero - nBombas);
     }
-    public void setTablero(){
-        anchoTablero=9;
-        altoTablero=9;
-        nBombas=10;
+    public void setTamanioTablero(){
+        anchoTablero=validador.validarTamanio(this.txt_ancho.getText());
+        altoTablero=validador.validarTamanio(this.txt_alto.getText());
+        nBombas=validador.validarNumeroBombas(this.txt_nbombas.getText());
         casillasJugadas = 0;
         terminoJuego=false;
     }
@@ -86,6 +77,12 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txt_alto = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txt_nbombas = new javax.swing.JTextField();
+        txt_ancho = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -97,15 +94,49 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
         setTitle("Busca Minas");
         setLocationByPlatform(true);
 
+        jLabel2.setText("Alto:");
+
+        txt_alto.setText("9");
+
+        jLabel3.setText("Numero Bombas:");
+
+        jLabel4.setText("Ancho:");
+
+        txt_nbombas.setText("10");
+
+        txt_ancho.setText("9");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txt_nbombas)
+                    .addComponent(txt_alto))
+                .addGap(39, 39, 39)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_ancho, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 23, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txt_alto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(txt_ancho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txt_nbombas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jLabel1.setText("Numero de Minas");
@@ -166,14 +197,14 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(toolbar_Main, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
                         .addComponent(bt_jugar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(89, 89, 89))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 97, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(panel_juego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -185,9 +216,11 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
                 .addComponent(toolbar_Main, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bt_jugar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(bt_jugar)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel_juego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,49 +238,44 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
         this.paintAll(this.getGraphics());
 
     }//GEN-LAST:event_bt_jugarActionPerformed
-    private void iniciarJuego() {
-        this.panel_juego.removeAll();        
-        setTablero();
+    private void iniciarJuego() {    
+        setTamanioTablero();
         miJuego = new Minas(altoTablero,anchoTablero);
         miJuego.cargarUnNumeroDeBombas(nBombas);
-  
-        this.panel_juego.setLayout(new java.awt.GridLayout(altoTablero, anchoTablero));
-        mapearTablero();
-    
+        setPanelTablero();
+        mapearTablero();    
         
     }
     private void mapearTablero(){        
         for (int fila = 0; fila < altoTablero; fila++) {
-            for (int col = 0; col < anchoTablero; col++) {
-                System.out.println("c1"  ); 
-                Casilla temp = new Casilla(fila*col);  
-                System.out.println("c2"  );
-                temp.setValor(miJuego.abrirJugada(fila, col));
-                System.out.println("c3"  );
+            for (int col = 0; col < anchoTablero; col++) {    
+                Casilla temp = new Casilla(fila*col);    
+                temp.setValor(miJuego.abrirJugada(fila, col));        
                 temp.addActionListener(this);
                 this.panel_juego.add(temp);                                
             }
         }
     }
     private void mostarTableroCompleto(){
-        this.panel_juego.removeAll();   
-        this.panel_juego.repaint();
-        this.panel_juego.setLayout(new java.awt.GridLayout(altoTablero, anchoTablero));
+        setPanelTablero();
         System.out.println("cargando el tablero completo"  );    
         for (int fila = 0; fila < altoTablero; fila++) {
             for (int col = 0; col < anchoTablero; col++) {
                 Casilla temp = new Casilla(fila*col);                
                 temp.setValor(miJuego.abrirJugada(fila,col ));
-                temp.addActionListener(this);
-                temp.mostrarValor();  
-                temp.setColor();
+                temp.addActionListener(this);       
+                temp.mostrarJugador();
                 this.panel_juego.add(temp);
                               
             }
         }
         this.validate();
     }
-    
+    private void setPanelTablero(){
+        this.panel_juego.removeAll();   
+        this.panel_juego.repaint();
+        this.panel_juego.setLayout(new java.awt.GridLayout(altoTablero, anchoTablero));
+    }
     /**
      * @param args the command line arguments
      */
@@ -287,10 +315,16 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_jugar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel panel_juego;
     private javax.swing.JToolBar toolbar_Main;
+    private javax.swing.JTextField txt_alto;
+    private javax.swing.JTextField txt_ancho;
+    private javax.swing.JTextField txt_nbombas;
     // End of variables declaration//GEN-END:variables
 }

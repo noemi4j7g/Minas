@@ -24,7 +24,7 @@ public class Casilla extends JButton{
     public int getValor(){
         return valorCasilla;
     }
-    public void setColor() {
+    private void setColor() {
         if (esBomba()){          
            this.setBackground(Color.black);
         
@@ -33,10 +33,14 @@ public class Casilla extends JButton{
            this.setBackground(Color.lightGray);
         }
     }
-    public void mostrarValor(){
+    private void mostrarValor(){
         this.setText("");
         if (valorCasilla>0 ){
             this.setText(Integer.toString(valorCasilla));
         }
+    }
+    public void mostrarJugador(){
+        setColor();
+        mostrarValor();
     }
 }
