@@ -1,0 +1,14 @@
+nuevo objetivo
+
+7. el juego tiene un tablero beginner de 9*9  con 10 minas
+
+cumplido
+
+1. el juego tiene un tablero de 1*1, crear metodo que devuelva 0 si no tiene
+   bomba y 1 si la tiene
+2. el juego tiene un tablero de 2*2, crear metodo que devuelva 0 si no tiene
+   bomba y 1 si la tiene; con una sola bomba en una posicion conocida
+3. el juego tiene un tablero de 3*3 Abrir Casilla Con Bomba
+4. el juego tiene un tablero de 3*3 devolver 1 si se tiene una bomba alrededor
+5. el juego tiene un tablero de 3*3 devolver 2 si se tiene dos bombas alrededor
+6.  el juego tiene un tablero de 3*3 devolver 0 si se no tiene  bomba alrededor
