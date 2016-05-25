@@ -38,14 +38,14 @@ public class JuegoBuscamina {
     }
             
     public static void main(String []args){   
-      int tamanio;
-      int bombas;
-      tamanio=preguntaTamanio();
-      bombas=preguntaNumeroBombas();
-      Minas miMina = new Minas(tamanio,tamanio);
-      miMina.cargarUnNumeroDeBombas(bombas);
-      miMina.jugarMinas();         
-      
+        int tamanio;
+        int bombas;
+        tamanio=preguntaTamanio();
+        bombas=preguntaNumeroBombas();
+        Minas miMina = new Minas(tamanio,tamanio);
+        miMina.cargarUnNumeroDeBombas(bombas);
+        miMina.jugarMinas();         
+ 
     }    
     
 }

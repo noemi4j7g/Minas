@@ -57,7 +57,7 @@ public class Minas {
             cargarBombasAleatorias(numeroBombas);      
             calcularNumeroDeBombasJuntas();
             imprimitTablero("Admin");
-            bombas=numeroBombas;
+           
         }        
     }
 
@@ -70,6 +70,7 @@ public class Minas {
             cargarBombaEnCoordenadas(casillaXY[0], casillaXY[1]);
             bombasCargadas += 1;
         }
+        bombas=bombasCargadas;
 
     }
 
