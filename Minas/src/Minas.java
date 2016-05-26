@@ -4,6 +4,7 @@ import static java.lang.Integer.min;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
+
 /**
  *
  * @author arquitectura de software I 2016
@@ -14,28 +15,39 @@ public class Minas {
     int casillasJugadas;
     int tamanio;
     int bombas;
-    public Minas(int largo,int ancho) {
-        tamanio=largo*ancho;
+    int altura;
+    int ancho;
+    ValidadorTablero validador;
+    private static int BOMBA_VALOR=-1;
+    
+    public Minas(int alturaT,int anchoT) {
+        altura=alturaT;
+        ancho=anchoT;
+        tamanio=altura*ancho;
         casillasJugadas=0;
         if (tamanio>0){
-            tablero = new int[largo][ancho];
-            tableroJugador= new String[largo][ancho];
+            tablero = new int[altura][ancho];
+            tableroJugador= new String[altura][ancho];
         }
         else {
             System.out.println("Tamaño no valido,el tamaño debe ser entero positivo ");
-        }        
+        } 
+        validador= new ValidadorTablero();
+        validador.copiarTamanioTablero(altura, ancho);
     }    
     
     private int abrirCasilla(int x, int y) {
+        System.out.println("X"+x);
+        System.out.println("Y" +y );
         return tablero[x][y];
     }
 
     public boolean esBomba(int x, int y) {
-        return abrirCasilla(x, y) == -1;
+        return abrirCasilla(x, y) == BOMBA_VALOR;
     }
 
     private void cargarBombaEnCoordenadas(int x, int y) {
-        tablero[x][y] = -1;
+        tablero[x][y] = BOMBA_VALOR;
     }
     public void jugada(){
         casillasJugadas+=1;
@@ -66,7 +78,8 @@ public class Minas {
         bombasCargadas = 0;
 
         while (bombasCargadas < numeroBombas) {
-            int casillaXY[] = optenerCasillaEnBlanco();                    
+       
+            int casillaXY[] = optenerCasillaEnBlanco();           
             cargarBombaEnCoordenadas(casillaXY[0], casillaXY[1]);
             bombasCargadas += 1;
         }
@@ -75,8 +88,8 @@ public class Minas {
     }
 
     private void calcularNumeroDeBombasJuntas() {
-        for (int coordX = 0; coordX <= tablero.length - 1; coordX++) {
-            for (int coordY = 0; coordY <= tablero.length - 1; coordY++) {
+        for (int coordX = 0; coordX <= altura- 1; coordX++) {
+            for (int coordY = 0; coordY <= ancho - 1; coordY++) {
                 if (!esBomba(coordX, coordY)) {
                     calcularBombasJuntasPorCasilla(coordX, coordY);
                 }               
@@ -87,8 +100,8 @@ public class Minas {
     private void calcularBombasJuntasPorCasilla(int x, int y) {
         int bombasSerca;
         bombasSerca = 0;
-        int maxMinX[] = optenerMaxMin(x);
-        int maxMinY[] = optenerMaxMin(y);
+        int maxMinX[] = validador.optenerMaxMinX(x);
+        int maxMinY[] = validador.optenerMaxMinY(y);
        
         for (int coordX = maxMinX[1]; coordX <= maxMinX[0]; coordX++) {
             for (int coordY = maxMinY[1]; coordY <= maxMinY[0]; coordY++) {
@@ -101,10 +114,7 @@ public class Minas {
         tablero[x][y] = bombasSerca;
     }
 
-    private int[] optenerMaxMin(int coord) {
-        return new int[]{min(coord + 1, tablero.length - 1), max(coord - 1, 0)};
-
-    }
+    
     
     private int[] optenerCasillaEnBlanco() {
 
@@ -112,8 +122,8 @@ public class Minas {
         int coordY;
         Random randomGenerator = new Random();
         do {          
-            coordX = randomGenerator.nextInt(tablero.length - 1);
-            coordY = randomGenerator.nextInt(tablero.length - 1);            
+            coordX = randomGenerator.nextInt(altura - 1);
+            coordY = randomGenerator.nextInt(ancho - 1);            
         } while (esBomba(coordX, coordY) != false);
         return new int[]{coordX, coordY};
 
@@ -176,7 +186,7 @@ public class Minas {
                 if (coordUsuario==0) {
                     System.exit(0);
                 }
-                if (!coordenadaValida(coordUsuario)){
+                if (!validador.coordenadaValida(coordUsuario,XY)){
                     System.out.println("Ingrese una coordenada valida del rango [1-" + tablero.length +"]");                           
                 }
                 else{
@@ -186,12 +196,10 @@ public class Minas {
         }      
         return coordUsuario;
     }
-    private boolean coordenadaValida(int coordUsuario){
-        return (coordUsuario>0 &&coordUsuario<=tablero.length);
-    } 
+
     public void cargarBombasJuntas(int bombasACargar, int x, int y) {
-        int maxMinX[] = optenerMaxMin(x);
-        int maxMinY[] = optenerMaxMin(y);
+        int maxMinX[] = validador.optenerMaxMinX(x);
+        int maxMinY[] = validador.optenerMaxMinY(y);
 
         for (int coordX = maxMinX[1]; coordX <= maxMinX[0]; coordX++) {
             for (int coordY = maxMinY[1]; coordY <= maxMinY[0]; coordY++) {

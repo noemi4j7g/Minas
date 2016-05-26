@@ -1,26 +1,29 @@
+import java.awt.Color;
+import javax.swing.JButton;
 /**
  *
  * @author arquitectura de software I 2016
  */
-import java.awt.Color;
 
-import javax.swing.JButton;
 public class Casilla extends JButton{
     int valorCasilla;
     int posicionCasilla;
-    
+    private static int BOMBA_VALOR=-1;
     public Casilla(int posicion) {
         setText("[]"); 
         setBackground(Color.blue);
-        setVisible(true);
+        setVisible(Boolean.TRUE);
         posicionCasilla=posicion;
     } 
+    
     public boolean esBomba(){
-        return  valorCasilla == -1;
-    }   
+        return  valorCasilla == BOMBA_VALOR;
+    } 
+    
     public void setValor(int valor){
         valorCasilla=valor;      
     }
+    
     public int getValor(){
         return valorCasilla;
     }

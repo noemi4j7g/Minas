@@ -1,11 +1,13 @@
 
-import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
 /**
- *
+ * Tests for @link{Minas} class
  * @author arquitectura de software I 2016
- */
+*/
+
 public class MinasTest {
     
     @Test
@@ -44,7 +46,7 @@ public class MinasTest {
     }   
     
     @Test
-    public void testJuego3por3casillaSercaDeUnaBomba1() {
+    public void testJuego3por3casillaCercaDeUnaBomba1() {
         Minas juego = new Minas(3,3);
         juego.cargarBombasJuntas(1,0,0);
         int obtenido = juego.abrirJugada(0,0);
@@ -53,7 +55,7 @@ public class MinasTest {
     }
     
     @Test
-    public void testJuego3por3casillaSercaDeDosBombas() {
+    public void testJuego3por3casillaCercaDeDosBombas() {
         Minas juego = new Minas(3,3);
         juego.cargarBombasJuntas(2,0,0);
         int obtenido = juego.abrirJugada(0,0);
@@ -62,7 +64,7 @@ public class MinasTest {
     }
     
     @Test
-    public void testJuego5por5casillaNoTieneBombaSerca() {
+    public void testJuego5por5casillaNoTieneBombaCerca() {
         Minas juego = new Minas(5,5);
         juego.cargarBombasJuntas(0,1,1);
         int obtenido = juego.abrirJugada(1,1);
@@ -71,7 +73,7 @@ public class MinasTest {
     }
     
     @Test
-    public void testJuego6por6casillaTiene5BombasSerca() {
+    public void testJuego6por6casillaTiene5BombasCerca() {
         Minas juego = new Minas(6,6);
         juego.cargarBombasJuntas(5,3,2);
         int obtenido = juego.abrirJugada(3,2);
@@ -79,7 +81,7 @@ public class MinasTest {
         assertEquals(esperado,obtenido);    
     }   
     @Test
-    public void testJuego6por6NegativoBombasSerca() {
+    public void testJuego6por6NegativoBombasCerca() {
         Minas juego = new Minas(6,6);
         juego.cargarBombasJuntas(-5,3,2);
         int obtenido = juego.abrirJugada(3,2);

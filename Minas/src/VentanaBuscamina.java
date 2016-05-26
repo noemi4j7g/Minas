@@ -10,10 +10,12 @@
  */
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+
 public class VentanaBuscamina extends javax.swing.JFrame implements ActionListener {
 
     Minas miJuego;
-    HelpValidaciones validador;
+    ValidadorTablero validador;
     int casillasJugadas;
     boolean terminoJuego;
     int anchoTablero;
@@ -26,7 +28,8 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
         initComponents();
         anchoTablero=9;
         altoTablero=9;
-        nBombas=10;        
+        nBombas=10;  
+        validador= new ValidadorTablero();
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -61,9 +64,12 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
     }
     
     public void setTamanioTablero(){
-        anchoTablero=Integer.parseInt(this.txt_ancho.getText());
-        altoTablero=Integer.parseInt(this.txt_alto.getText());
-        nBombas=Integer.parseInt(this.txt_nbombas.getText());
+        altoTablero=validador.validarTamanio(this.txt_alto.getText());
+        this.txt_alto.setText(String.valueOf(String.valueOf(altoTablero)));  
+        anchoTablero=validador.validarTamanio(this.txt_ancho.getText());
+        this.txt_ancho.setText(String.valueOf(String.valueOf(anchoTablero))); 
+        nBombas=validador.validarNumeroBombas(this.txt_nbombas.getText(),anchoTablero*altoTablero);
+        this.txt_nbombas.setText(String.valueOf(nBombas)); 
         casillasJugadas = 0;
         terminoJuego=false;
     }
@@ -95,13 +101,20 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
 
         txt_alto.setText("9");
 
-        jLabel3.setText("Numero Bombas:");
+        jLabel3.setText(" Bombas:");
 
         jLabel4.setText("Ancho:");
 
         txt_nbombas.setText("10");
 
         txt_ancho.setText("9");
+
+        bt_jugar.setText("Jugar");
+        bt_jugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_jugarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,14 +128,19 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(txt_nbombas, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                        .addComponent(txt_nbombas, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(txt_alto)))
-                .addGap(63, 63, 63)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_ancho, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txt_ancho, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bt_jugar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -133,18 +151,13 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
                     .addComponent(txt_alto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(txt_ancho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txt_nbombas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txt_nbombas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_jugar))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
-
-        bt_jugar.setText("Jugar");
-        bt_jugar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_jugarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panel_juegoLayout = new javax.swing.GroupLayout(panel_juego);
         panel_juego.setLayout(panel_juegoLayout);
@@ -154,7 +167,7 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
         );
         panel_juegoLayout.setVerticalGroup(
             panel_juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 282, Short.MAX_VALUE)
+            .addGap(0, 361, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,29 +175,21 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                        .addComponent(bt_jugar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(panel_juego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addComponent(panel_juego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(115, 115, 115))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(bt_jugar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_juego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(panel_juego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -199,14 +204,17 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
         setTamanioTablero();
         miJuego = new Minas(altoTablero,anchoTablero);
         miJuego.cargarUnNumeroDeBombas(nBombas);
+        System.out.println("1"  );  
         setPanelTablero();
+        System.out.println("2"  );  
         mapearTablero();    
         
     }
     
     private void mapearTablero(){        
         for (int fila = 0; fila < altoTablero; fila++) {
-            for (int col = 0; col < anchoTablero; col++) {    
+            for (int col = 0; col < anchoTablero; col++) {
+                System.out.println("3"  );  
                 Casilla temp = new Casilla(fila*col);    
                 temp.setValor(miJuego.abrirJugada(fila, col));        
                 temp.addActionListener(this);
