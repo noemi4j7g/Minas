@@ -28,7 +28,7 @@ public class ValidadorTablero {
         tamanio=9;
         try {
             tamanio = Integer.parseInt(nuevoTamanio);
-            if  (tamanio>25){
+            if  (tamanio>24){
                 System.out.println("El valor introducido es muy grande ");
                 tamanio=24;
             }
@@ -48,13 +48,9 @@ public class ValidadorTablero {
         int nBombas;
         nBombas=10;
         try {
-            nBombas = Integer.parseInt(nuevoBombas);
-            if  (nBombas>668){
-                System.out.println("El valor introducido es muy grande ");
-                nBombas=668;
-            }
-            if (10 > nBombas) {
-                System.out.println("El valor introducido es muy pequeño");
+            nBombas = Integer.parseInt(nuevoBombas);            
+            if (10> nBombas) {
+                System.out.println("El valor introducido es muy pequeño,debe ser mayor a 10");
                 nBombas=10;
             }
             if (nBombas > tamanio* 0.8) {

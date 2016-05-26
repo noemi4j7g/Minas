@@ -5,9 +5,11 @@
         <group>
             <file>file:/C:/Arqui/Minas/Minas/src/JuegoBuscamina.java</file>
             <file>file:/C:/Arqui/Minas/Minas/src/VentanaBuscamina.java</file>
-            <file>file:/C:/Arqui/Minas/Minas/src/HelpValidaciones.java</file>
+            <file>file:/C:/Arqui/Minas/Minas/test/ValidadorTest.java</file>
             <file>file:/C:/Arqui/Minas/Minas/src/Minas.java</file>
+            <file>file:/C:/Arqui/Minas/Minas/src/ValidadorTablero.java</file>
             <file>file:/C:/Arqui/Minas/Minas/src/Casilla.java</file>
+            <file>file:/C:/Arqui/Minas/Minas/test/MinasTest.java</file>
         </group>
     </open-files>
 </project-private>
