@@ -197,24 +197,20 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
 
     private void bt_jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_jugarActionPerformed
         iniciarJuego();
+        mapearTablero();  
         this.paintAll(this.getGraphics());
     }//GEN-LAST:event_bt_jugarActionPerformed
     
     private void iniciarJuego() {    
         setTamanioTablero();
         miJuego = new Minas(altoTablero,anchoTablero);
-        miJuego.cargarUnNumeroDeBombas(nBombas);
-        System.out.println("1"  );  
-        setPanelTablero();
-        System.out.println("2"  );  
-        mapearTablero();    
-        
+        miJuego.cargarUnNumeroDeBombas(nBombas);     
+        setPanelTablero();                 
     }
     
     private void mapearTablero(){        
         for (int fila = 0; fila < altoTablero; fila++) {
-            for (int col = 0; col < anchoTablero; col++) {
-                System.out.println("3"  );  
+            for (int col = 0; col < anchoTablero; col++) {           
                 Casilla temp = new Casilla(fila*col);    
                 temp.setValor(miJuego.abrirJugada(fila, col));        
                 temp.addActionListener(this);
@@ -237,6 +233,7 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
             }
         }
         this.validate();
+       // javax.swing.JOptionPane.s
     }
     
     private void setPanelTablero(){

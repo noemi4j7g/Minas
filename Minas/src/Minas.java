@@ -1,6 +1,4 @@
 
-import static java.lang.Integer.max;
-import static java.lang.Integer.min;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -18,7 +16,7 @@ public class Minas {
     int altura;
     int ancho;
     ValidadorTablero validador;
-    private static int BOMBA_VALOR=-1;
+    private static final int BOMBA_VALOR=-1;
     
     public Minas(int alturaT,int anchoT) {
         altura=alturaT;
@@ -36,9 +34,7 @@ public class Minas {
         validador.copiarTamanioTablero(altura, ancho);
     }    
     
-    private int abrirCasilla(int x, int y) {
-        System.out.println("X"+x);
-        System.out.println("Y" +y );
+    private int abrirCasilla(int x, int y) {        
         return tablero[x][y];
     }
 
@@ -49,9 +45,7 @@ public class Minas {
     private void cargarBombaEnCoordenadas(int x, int y) {
         tablero[x][y] = BOMBA_VALOR;
     }
-    public void jugada(){
-        casillasJugadas+=1;
-    }
+         
     public boolean continuarJuego(){
         
         return (casillasJugadas<tamanio-bombas);
@@ -68,8 +62,7 @@ public class Minas {
         else {
             cargarBombasAleatorias(numeroBombas);      
             calcularNumeroDeBombasJuntas();
-            imprimitTablero("Admin");
-           
+            imprimitTablero("Admin");           
         }        
     }
 
@@ -77,14 +70,12 @@ public class Minas {
         int bombasCargadas;
         bombasCargadas = 0;
 
-        while (bombasCargadas < numeroBombas) {
-       
+        while (bombasCargadas < numeroBombas) {       
             int casillaXY[] = optenerCasillaEnBlanco();           
             cargarBombaEnCoordenadas(casillaXY[0], casillaXY[1]);
             bombasCargadas += 1;
         }
         bombas=bombasCargadas;
-
     }
 
     private void calcularNumeroDeBombasJuntas() {
@@ -109,12 +100,9 @@ public class Minas {
                     bombasSerca += 1;
                 }
             }
-        }
-         
+        }         
         tablero[x][y] = bombasSerca;
-    }
-
-    
+    }    
     
     private int[] optenerCasillaEnBlanco() {
 
@@ -214,7 +202,6 @@ public class Minas {
             }
         }
         calcularBombasJuntasPorCasilla(x, y);
-    }
-    
+    }  
 
 }

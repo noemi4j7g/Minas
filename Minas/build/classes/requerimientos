@@ -12,3 +12,13 @@ cumplido
 4. el juego tiene un tablero de 3*3 devolver 1 si se tiene una bomba alrededor
 5. el juego tiene un tablero de 3*3 devolver 2 si se tiene dos bombas alrededor
 6.  el juego tiene un tablero de 3*3 devolver 0 si se no tiene  bomba alrededor
+
+
+**************************
+Validador 
+
+
+Done
+1.Validar que el tramaño sea del rango 9-24
+2.validar tamaña no enteros, string , vacio
+3.validar que numero de bombas no sea mayor al 80% del tamaño del tablero, ni menor a 10
