@@ -1,5 +1,5 @@
+package Minas;
 
-import Minas.Minas;
 import java.util.Scanner;
 
 /**
@@ -24,7 +24,6 @@ public class JuegoBuscamina {
         System.out.println(Pregunta);
         while (!entradaValida) {
             Scanner entrada = new Scanner(System.in);
-
             if (esInteger(entrada)) {
                 entradaValida = true;
                 tamanio = entrada.nextInt();

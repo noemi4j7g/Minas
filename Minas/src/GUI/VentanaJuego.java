@@ -12,28 +12,27 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import Minas.ValidadorTablero;
-import java.awt.event.ActionEvent;
+
 /**
  *
  * @author Noemi Guzman
  */
 public class VentanaJuego extends javax.swing.JFrame {
+
     private JTextField txt_alto;
     private JTextField txt_ancho;
     private JTextField txt_nbombas;
     private JButton bt_jugar;
-    private JLabel lb_alto;    
+    private JLabel lb_alto;
     private JLabel lb_ancho;
     private JLabel lb_nbombas;
     private JPanel panel_setTablero;
     private JPanel panelMain;
     private Tablero panel_juego;
-    
+
     private int anchoTablero;
     private int altoTablero;
     private int nBombas;
-
-
     Juego myJuego;
     ValidadorTablero validador;
 
@@ -41,11 +40,11 @@ public class VentanaJuego extends javax.swing.JFrame {
      * Creates new form VentanaJuego
      */
     public VentanaJuego() {
-        validador= new ValidadorTablero();
+        validador = new ValidadorTablero();
         initComponents();
         componentes();
     }
-  
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -67,53 +66,54 @@ public class VentanaJuego extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void componentes() {
         setBounds(200, 200, 500, 500);
-        
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Busca Minas");
         setLocationByPlatform(true);
-        
-     // creating main JPanel (white)
+
+        // creating main JPanel (white)
         panelMain = new JPanel();
         panelMain.setBackground(Color.WHITE);
         panelMain.setBounds(0, 0, 420, 800);
         panelMain.setPreferredSize(new Dimension(200, 800));
-        add(panelMain);   
-              
-        panel_setTablero=new JPanel();
-        
-        txt_alto=new JTextField();
-        txt_ancho=new JTextField();
-        txt_nbombas=new JTextField();
-        lb_alto= new JLabel();
-        lb_ancho=new JLabel();
-        lb_nbombas=new JLabel();
-        bt_jugar=new JButton();
-        
-        lb_alto.setText("Alto:");        
+        add(panelMain);
+
+        panel_setTablero = new JPanel();
+
+        txt_alto = new JTextField();
+        txt_ancho = new JTextField();
+        txt_nbombas = new JTextField();
+        lb_alto = new JLabel();
+        lb_ancho = new JLabel();
+        lb_nbombas = new JLabel();
+        bt_jugar = new JButton();
+
+        lb_alto.setText("Alto:");
         lb_nbombas.setText("Numero Bombas:");
         lb_ancho.setText("Ancho:");
         txt_nbombas.setText("10");
         txt_ancho.setText("9");
         txt_alto.setText("9");
         bt_jugar.setText("Jugar");
-        
+
         lb_alto.setBounds(0, 25, 130, 25);
-        panel_setTablero.add(lb_alto); 
+        panel_setTablero.add(lb_alto);
         txt_alto.setBounds(0, 250, 120, 25);
         panel_setTablero.add(txt_alto);
-        lb_ancho.setBounds(150, 25, 130,25);
+        lb_ancho.setBounds(150, 25, 130, 25);
         panel_setTablero.add(lb_ancho);
         txt_ancho.setBounds(150, 250, 120, 25);
-        lb_nbombas.setBounds(0, 50, 130,25);
-        txt_nbombas.setBounds(150, 250, 120, 25);   
+        lb_nbombas.setBounds(0, 50, 130, 25);
+        txt_nbombas.setBounds(150, 250, 120, 25);
         addComponentes();
     }
-    private void addComponentes(){
+
+    private void addComponentes() {
         panel_setTablero.add(txt_ancho);
         panel_setTablero.add(lb_nbombas);
         panel_setTablero.add(txt_nbombas);
         panel_setTablero.add(bt_jugar);
-        panel_setTablero.setBounds(0,0,500,300);
+        panel_setTablero.setBounds(0, 0, 500, 300);
         bt_jugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_jugarActionPerformed(evt);
@@ -124,28 +124,29 @@ public class VentanaJuego extends javax.swing.JFrame {
         panel_setTablero.setVisible(true);
         setVisible(true);
     }
-    public void leerTamanioTablero(){
-       
-        altoTablero=validador.validarTamanio(txt_alto.getText());
-        txt_alto.setText(String.valueOf(String.valueOf(altoTablero)));  
-        anchoTablero=validador.validarTamanio(txt_ancho.getText());
-        txt_ancho.setText(String.valueOf(String.valueOf(anchoTablero))); 
-        nBombas=validador.validarNumeroBombas(txt_nbombas.getText(),anchoTablero*altoTablero);
+
+    public void leerTamanioTablero() {
+
+        altoTablero = validador.validarTamanio(txt_alto.getText());
+        txt_alto.setText(String.valueOf(String.valueOf(altoTablero)));
+        anchoTablero = validador.validarTamanio(txt_ancho.getText());
+        txt_ancho.setText(String.valueOf(String.valueOf(anchoTablero)));
+        nBombas = validador.validarNumeroBombas(txt_nbombas.getText(), anchoTablero * altoTablero);
         txt_nbombas.setText(String.valueOf(nBombas));
-   
+
     }
-    
-    private void bt_jugarActionPerformed(java.awt.event.ActionEvent evt) { 
-        leerTamanioTablero();       
+
+    private void bt_jugarActionPerformed(java.awt.event.ActionEvent evt) {
+        leerTamanioTablero();
         panelMain.removeAll();
         addComponentes();
-        System.out.println("Tablero: Alto "+ String.valueOf(altoTablero) + " anchos " +String.valueOf(anchoTablero) + " Bombas " + String.valueOf(nBombas)   ); 
-        panel_juego= new Tablero(altoTablero,anchoTablero,nBombas);
+        System.out.println("Tablero: Alto " + String.valueOf(altoTablero) + " anchos " + String.valueOf(anchoTablero) + " Bombas " + String.valueOf(nBombas));
+        panel_juego = new Tablero(altoTablero, anchoTablero, nBombas);
         panel_juego.setBackground(Color.blue);
-        panelMain.add(panel_juego);          
+        panelMain.add(panel_juego);
         this.paintAll(this.getGraphics());
-    } 
-  
+    }
+
     /**
      * @param args the command line arguments
      */

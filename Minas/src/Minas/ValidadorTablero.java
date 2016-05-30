@@ -1,6 +1,5 @@
 package Minas;
 
-
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;
 
@@ -78,12 +77,10 @@ public class ValidadorTablero {
 
     public int[] optenerMaxMinX(int coord) {
         return new int[]{min(coord + 1, altura - 1), max(coord - 1, 0)};
-
     }
 
     public int[] optenerMaxMinY(int coord) {
         return new int[]{min(coord + 1, ancho - 1), max(coord - 1, 0)};
-
     }
 
 }

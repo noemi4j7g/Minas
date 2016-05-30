@@ -1,18 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Minas;
 
 /**
  *
- * @author Noemi Guzman
+ * @author arquitectura de software I 2016
  */
 public class Juego {
-    
-    
-    private static boolean  terminoJuego;
+
+    private static boolean terminoJuego;
     int[][] tablero;
     String[][] tableroJugador;
     private final Minas miJuego;
@@ -20,41 +14,44 @@ public class Juego {
     private static int alturaTablero;
     private static int anchoTablero;
     private static int nBombas;
-    private boolean ganoJuego;
+
     public Juego(int alturaT, int anchoT, int nBombasT) {
-        alturaTablero=alturaT;
-        anchoTablero=anchoT;
-        nBombas=nBombasT;
-        miJuego= new Minas(alturaTablero,anchoTablero);
+        alturaTablero = alturaT;
+        anchoTablero = anchoT;
+        nBombas = nBombasT;
+        miJuego = new Minas(alturaTablero, anchoTablero);
         miJuego.cargarUnNumeroDeBombas(nBombas);
-        tablero=miJuego.copiarTablero();
+        tablero = miJuego.copiarTablero();
         iniciarJuego();
     }
-    public int[][] optenerTablero(){
+
+    public int[][] optenerTablero() {
         return tablero;
     }
-    private void iniciarJuego(){
-        casillasJugadas=0;
-        terminoJuego=false;
-        ganoJuego=false;
+
+    private void iniciarJuego() {
+        casillasJugadas = 0;
+        terminoJuego = false;
     }
 
     public static void regitrarJugada() {
-        casillasJugadas+=1;
+        casillasJugadas += 1;
     }
-    public static void terminarJuego(){
-        terminoJuego=true;
-        System.out.println("Perdio el juego"  );  
+
+    public static void terminarJuego() {
+        terminoJuego = true;
+        System.out.println("Perdio el juego");
     }
+
     public static void calcularCasillasPorAbrir() {
-        if ((int)casillasJugadas >= (int)(anchoTablero * alturaTablero - nBombas)){
-            terminoJuego=true;
-            System.out.println("jugado completado ....." );
+        if ((int) casillasJugadas >= (int) (anchoTablero * alturaTablero - nBombas)) {
+            terminoJuego = true;
+            System.out.println("jugado completado .....");
         }
-        System.out.println("jugada ....." +String.valueOf(casillasJugadas) ); 
+        System.out.println("jugada ....." + String.valueOf(casillasJugadas));
     }
- 
-    public static boolean terminoJuego(){
+
+    public static boolean terminoJuego() {
         return terminoJuego;
     }
 }
