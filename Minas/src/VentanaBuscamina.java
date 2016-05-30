@@ -8,6 +8,9 @@
  *
  * @author Noemi Guzman
  */
+import Minas.Minas;
+import GUI.Casilla;
+import Minas.ValidadorTablero;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -211,7 +214,7 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
     private void mapearTablero(){        
         for (int fila = 0; fila < altoTablero; fila++) {
             for (int col = 0; col < anchoTablero; col++) {           
-                Casilla temp = new Casilla(fila*col);    
+                Casilla temp = new Casilla(fila,col);    
                 temp.setValor(miJuego.abrirJugada(fila, col));        
                 temp.addActionListener(this);
                 this.panel_juego.add(temp);                                
@@ -225,7 +228,7 @@ public class VentanaBuscamina extends javax.swing.JFrame implements ActionListen
         System.out.println("cargando el tablero completo"  );    
         for (int fila = 0; fila < altoTablero; fila++) {
             for (int col = 0; col < anchoTablero; col++) {
-                Casilla temp = new Casilla(fila*col);                
+                Casilla temp = new Casilla(fila,col);                
                 temp.setValor(miJuego.abrirJugada(fila,col ));
                 temp.addActionListener(this);       
                 temp.mostrarJugador();

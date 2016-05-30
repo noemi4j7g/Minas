@@ -1,4 +1,5 @@
 
+import Minas.Minas;
 import java.util.Scanner;
 
 /**

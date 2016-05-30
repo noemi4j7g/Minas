@@ -1,3 +1,5 @@
+package Minas;
+
 
 import static java.lang.Integer.max;
 import static java.lang.Integer.min;

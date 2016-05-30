@@ -1,4 +1,7 @@
+package Minas;
 
+
+import Minas.ValidadorTablero;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -32,8 +35,12 @@ public class Minas {
         } 
         validador= new ValidadorTablero();
         validador.copiarTamanioTablero(altura, ancho);
+        System.out.println("Tablero creado Alto " + String.valueOf(altura) + " Ancho " + String.valueOf(ancho));
     }    
     
+    public int[][] copiarTablero(){
+        return tablero.clone();
+    }
     private int abrirCasilla(int x, int y) {        
         return tablero[x][y];
     }
@@ -75,6 +82,7 @@ public class Minas {
             cargarBombaEnCoordenadas(casillaXY[0], casillaXY[1]);
             bombasCargadas += 1;
         }
+        System.out.println(String.valueOf(bombas)+ " Bombas cargadas"  );  
         bombas=bombasCargadas;
     }
 
