@@ -20,19 +20,19 @@ public class CasillasJuntasVacias {
         return tableroVisible;
     }
 
-    private static void buscar4Direcciones(int X, int Y, boolean original) {
-        buscarCasillaVaciasYDerecha(X, Y, original);
-        buscarCasillaVaciasXIzquierda(X, Y, original);
-        buscarCasillaVaciasXAbajo(X, Y, original);
-        buscarCasillaVaciasYArriba(X, Y, original);
+    private static void buscar4Direcciones(int X, int Y, int distanciaCasilla) {
+        buscarCasillaVaciasYDerecha(X, Y, 0);
+        buscarCasillaVaciasXIzquierda(X, Y, 0);
+        buscarCasillaVaciasXAbajo(X, Y, 0);
+        buscarCasillaVaciasYArriba(X, Y, 0);
     }
 
-    private static void buscarCasillaVaciasXAbajo(int x, int y, boolean vueltaOrinal) {
+    private static void buscarCasillaVaciasXAbajo(int x, int y, int vueltaOrinal) {
         for (int i = x; i < altura; i++) {
             if (tableroJ[i][y] >= 0) {
                 tableroVisible[i][y] = true;
-                if (vueltaOrinal) {
-                    buscar4Direcciones(i, y, false);
+                if (vueltaOrinal<2) {
+                    buscar4Direcciones(i, y, vueltaOrinal+1);
                 }
             }
             if (tableroJ[i][y] > 0 || tableroJ[i][y] == -1) {
@@ -41,12 +41,12 @@ public class CasillasJuntasVacias {
         }
     }
 
-    private static void buscarCasillaVaciasXIzquierda(int x, int y, boolean vueltaOriginal) {
+    private static void buscarCasillaVaciasXIzquierda(int x, int y, int vueltaOriginal) {
         for (int i = x; i >= 0; i--) {
             if (tableroJ[i][y] >= 0) {
                 tableroVisible[i][y] = true;
-                if (vueltaOriginal) {
-                    buscar4Direcciones(i, y, false);
+                if (vueltaOriginal<2) {
+                    buscar4Direcciones(i, y, vueltaOrinal+1);
                 }
             }
             if (tableroJ[i][y] > 0 || tableroJ[i][y] == -1) {
@@ -55,12 +55,12 @@ public class CasillasJuntasVacias {
         }
     }
 
-    private static void buscarCasillaVaciasYDerecha(int x, int y, boolean vueltaOriginal) {
+    private static void buscarCasillaVaciasYDerecha(int x, int y, int vueltaOriginal) {
         for (int i = y; i < ancho; i++) {
             if (tableroJ[x][i] >= 0) {
                 tableroVisible[x][i] = true;
-                if (vueltaOriginal) {
-                    buscar4Direcciones(y, i, false);
+                if (vueltaOriginal<2) {
+                    buscar4Direcciones(y, i, vueltaOrinal+1);
                 }
             }
             if (tableroJ[x][i] > 0 || tableroJ[x][i] == -1) {
@@ -69,12 +69,12 @@ public class CasillasJuntasVacias {
         }
     }
 
-    private static void buscarCasillaVaciasYArriba(int x, int y, boolean vueltaOriginal) {
+    private static void buscarCasillaVaciasYArriba(int x, int y, int vueltaOriginal) {
         for (int i = y; i >= 0; i--) {
             if (tableroJ[x][y] >= 0) {
                 tableroVisible[x][i] = true;
-                if (vueltaOriginal) {
-                    buscar4Direcciones(y, i, false);
+                if (vueltaOriginal<2) {
+                    buscar4Direcciones(y, i, vueltaOrinal+1);
                 }
             }
             if (tableroJ[x][i] > 0 || tableroJ[y][i] == -1) {
