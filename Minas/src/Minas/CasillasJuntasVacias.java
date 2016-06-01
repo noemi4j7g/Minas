@@ -16,23 +16,23 @@ public class CasillasJuntasVacias {
         altura = alturaT;
         ancho = anchoT;
         tableroVisible = new boolean[altura][ancho];
-        buscar4Direcciones(X, Y, true);
+        buscar4Direcciones(X, Y, 0);
         return tableroVisible;
     }
 
     private static void buscar4Direcciones(int X, int Y, int distanciaCasilla) {
-        buscarCasillaVaciasYDerecha(X, Y, 0);
-        buscarCasillaVaciasXIzquierda(X, Y, 0);
-        buscarCasillaVaciasXAbajo(X, Y, 0);
-        buscarCasillaVaciasYArriba(X, Y, 0);
+        buscarCasillaVaciasYDerecha(X, Y, distanciaCasilla);
+        buscarCasillaVaciasXIzquierda(X, Y, distanciaCasilla);
+        buscarCasillaVaciasXAbajo(X, Y, distanciaCasilla);
+        buscarCasillaVaciasYArriba(X, Y, distanciaCasilla);
     }
 
-    private static void buscarCasillaVaciasXAbajo(int x, int y, int vueltaOrinal) {
+    private static void buscarCasillaVaciasXAbajo(int x, int y, int vueltaOriginal) {
         for (int i = x; i < altura; i++) {
             if (tableroJ[i][y] >= 0) {
                 tableroVisible[i][y] = true;
-                if (vueltaOrinal<2) {
-                    buscar4Direcciones(i, y, vueltaOrinal+1);
+                if (vueltaOriginal<2) {
+                    buscar4Direcciones(i, y, vueltaOriginal+1);
                 }
             }
             if (tableroJ[i][y] > 0 || tableroJ[i][y] == -1) {
@@ -46,7 +46,7 @@ public class CasillasJuntasVacias {
             if (tableroJ[i][y] >= 0) {
                 tableroVisible[i][y] = true;
                 if (vueltaOriginal<2) {
-                    buscar4Direcciones(i, y, vueltaOrinal+1);
+                    buscar4Direcciones(i, y, vueltaOriginal+1);
                 }
             }
             if (tableroJ[i][y] > 0 || tableroJ[i][y] == -1) {
@@ -60,7 +60,7 @@ public class CasillasJuntasVacias {
             if (tableroJ[x][i] >= 0) {
                 tableroVisible[x][i] = true;
                 if (vueltaOriginal<2) {
-                    buscar4Direcciones(y, i, vueltaOrinal+1);
+                    buscar4Direcciones(y, i, vueltaOriginal+1);
                 }
             }
             if (tableroJ[x][i] > 0 || tableroJ[x][i] == -1) {
@@ -74,7 +74,7 @@ public class CasillasJuntasVacias {
             if (tableroJ[x][y] >= 0) {
                 tableroVisible[x][i] = true;
                 if (vueltaOriginal<2) {
-                    buscar4Direcciones(y, i, vueltaOrinal+1);
+                    buscar4Direcciones(y, i, vueltaOriginal+1);
                 }
             }
             if (tableroJ[x][i] > 0 || tableroJ[y][i] == -1) {

@@ -46,7 +46,7 @@ public class MinasTest {
         assertEquals(esperado,obtenido);    
     }   
     
-    @Test
+  /*  @Test
     public void testJuego3por3casillaCercaDeUnaBomba1() {
         Minas juego = new Minas(3,3);
         juego.cargarBombasJuntas(1,0,0);
@@ -89,5 +89,5 @@ public class MinasTest {
         int esperado = 0;
         assertEquals(esperado,obtenido);    
     }
-
+*/
 }

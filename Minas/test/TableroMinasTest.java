@@ -15,7 +15,7 @@ import org.junit.Test;
  * @author Noemi Guzman
  */
 public class TableroMinasTest {
-    @Test
+   /* @Test
     public void testJuego6por6casillaCargar5Bombas() {
         Minas juego = new Minas(6,6);
         juego.cargarUnNumeroDeBombas(5);
@@ -62,5 +62,5 @@ public class TableroMinasTest {
         boolean obtenido = juego.esBomba(3,3);
         boolean esperado = false;
         assertEquals(esperado,obtenido);    
-    }
+    }*/
 }
