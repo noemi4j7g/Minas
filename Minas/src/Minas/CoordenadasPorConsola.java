@@ -24,7 +24,7 @@ public class CoordenadasPorConsola {
  
         coordUsuarioX = preguntarCoordena("X");
         coordUsuarioY = preguntarCoordena("Y");
-        return new int[]{coordUsuarioY - 1, coordUsuarioX - 1};
+        return new int[]{ coordUsuarioX - 1,coordUsuarioY - 1};
     }
 
     private int preguntarCoordena(String XY) {

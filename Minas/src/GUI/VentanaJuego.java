@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import Minas.ValidadorTablero;
+import java.awt.event.ComponentListener;
 
 /**
  *
@@ -74,8 +75,8 @@ public class VentanaJuego extends javax.swing.JFrame {
         // creating main JPanel (white)
         panelMain = new JPanel();
         panelMain.setBackground(Color.WHITE);
-        panelMain.setBounds(0, 0, 420, 800);
-        panelMain.setPreferredSize(new Dimension(200, 800));
+        panelMain.setBounds(0, 0, 420, 700);
+        panelMain.setPreferredSize(new Dimension(200, 700));
         add(panelMain);
 
         panel_setTablero = new JPanel();
@@ -137,6 +138,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     }
 
     private void bt_jugarActionPerformed(java.awt.event.ActionEvent evt) {
+        
         leerTamanioTablero();
         panelMain.removeAll();
         addComponentes();
@@ -144,7 +146,11 @@ public class VentanaJuego extends javax.swing.JFrame {
         panel_juego = new Tablero(altoTablero, anchoTablero, nBombas);
         panel_juego.setBackground(Color.blue);
         panelMain.add(panel_juego);
+        
         this.paintAll(this.getGraphics());
+      
+        System.out.println("Tablero cargado " );
+       
     }
 
     /**

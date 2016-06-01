@@ -1,5 +1,7 @@
 package Minas;
 
+import static Minas.JuegoBuscaminaConsola.tableroMain;
+
 /**
  *
  * @author arquitectura de software I 2016
@@ -31,7 +33,7 @@ public class CasillasJuntasVacias {
         for (int i = x; i < altura; i++) {
             if (tableroJ[i][y] >= 0) {
                 tableroVisible[i][y] = true;
-                if (vueltaOriginal<2) {
+                if (vueltaOriginal<2) {             
                     buscar4Direcciones(i, y, vueltaOriginal+1);
                 }
             }
@@ -45,7 +47,7 @@ public class CasillasJuntasVacias {
         for (int i = x; i >= 0; i--) {
             if (tableroJ[i][y] >= 0) {
                 tableroVisible[i][y] = true;
-                if (vueltaOriginal<2) {
+                if (vueltaOriginal<2) {              
                     buscar4Direcciones(i, y, vueltaOriginal+1);
                 }
             }
@@ -59,8 +61,8 @@ public class CasillasJuntasVacias {
         for (int i = y; i < ancho; i++) {
             if (tableroJ[x][i] >= 0) {
                 tableroVisible[x][i] = true;
-                if (vueltaOriginal<2) {
-                    buscar4Direcciones(y, i, vueltaOriginal+1);
+                if (vueltaOriginal<2) {                
+                    buscar4Direcciones(x, i, vueltaOriginal+1);
                 }
             }
             if (tableroJ[x][i] > 0 || tableroJ[x][i] == -1) {
@@ -73,8 +75,8 @@ public class CasillasJuntasVacias {
         for (int i = y; i >= 0; i--) {
             if (tableroJ[x][y] >= 0) {
                 tableroVisible[x][i] = true;
-                if (vueltaOriginal<2) {
-                    buscar4Direcciones(y, i, vueltaOriginal+1);
+                if (vueltaOriginal<2) {                  
+                    buscar4Direcciones(x, i, vueltaOriginal+1);
                 }
             }
             if (tableroJ[x][i] > 0 || tableroJ[y][i] == -1) {

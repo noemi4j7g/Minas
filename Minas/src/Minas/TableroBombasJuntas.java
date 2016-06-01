@@ -11,10 +11,8 @@ class TableroBombasJuntas {
     private static final int BOMBA_VALOR = -1;
 
     public TableroBombasJuntas() {
-        validador = new ValidadorTablero();
-     
+        validador = new ValidadorTablero();     
     }
-
     
     public int[][] calcularNumeroDeBombasJuntas(int[][] tablero) {
         tableroBJ=tablero.clone();
