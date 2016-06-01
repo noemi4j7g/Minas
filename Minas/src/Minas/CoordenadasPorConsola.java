@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Minas;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * clase para preguntar coordenadas por consola
- * @author Noemi Guzman
+ *
+ * @author arquitectura de software I 2016
  */
 public class CoordenadasPorConsola {
     ValidadorTablero validador;
@@ -38,7 +33,7 @@ public class CoordenadasPorConsola {
         int tamanio;
         coordUsuario = 0;
         coordCorecta = false;
-        if(XY=="X"){
+        if("X".equals(XY)){
             tamanio=altura; 
         }
         else {
@@ -65,5 +60,4 @@ public class CoordenadasPorConsola {
         }
         return coordUsuario;
     }
-
 }

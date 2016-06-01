@@ -3,7 +3,7 @@ package GUI;
 import Minas.CasillasJuntasVacias;
 import Minas.Juego;
 import Minas.ValidadorTablero;
-import Minas.Minas;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,7 +17,7 @@ import Minas.Minas;
  */
 public class Tablero extends javax.swing.JPanel {
 
-    Minas miJuego;
+   
     ValidadorTablero validador;
     private static int anchoTablero;
     private static int altoTablero;

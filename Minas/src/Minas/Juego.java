@@ -9,19 +9,20 @@ public class Juego {
     private static boolean terminoJuego;
     int[][] tablero;
     String[][] tableroJugador;
-    private final Minas miJuego;
+    private final TableroMinas miJuego;
     public static int casillasJugadas;
     private static int alturaTablero;
     private static int anchoTablero;
     private static int nBombas;
-
+    ImprimirTableroConsola ImprimirT;    
     public Juego(int alturaT, int anchoT, int nBombasT) {
         alturaTablero = alturaT;
         anchoTablero = anchoT;
         nBombas = nBombasT;
-        miJuego = new Minas(alturaTablero, anchoTablero);
+        miJuego = new TableroMinas(alturaTablero, anchoTablero);
         miJuego.cargarUnNumeroDeBombas(nBombas);
-        tablero = miJuego.copiarTablero();
+        tablero = miJuego.copiarTableroMinas();
+       
         iniciarJuego();
     }
 

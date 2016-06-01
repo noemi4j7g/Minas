@@ -1,5 +1,6 @@
 package Minas;
 
+import java.util.Arrays;
 import java.util.Scanner;
 /**
  *
@@ -14,7 +15,7 @@ public class JuegoBuscaminaConsola {
     static int[][] tableroMain;
     static String[][] tableroJugador;
     private static final int BOMBA_VALOR = -1;
-    
+
     private static int preguntaTamanio() {
         return preguntarPorEntero("Ingrese el taño de tablero que desee jugar");
     }
@@ -62,25 +63,23 @@ public class JuegoBuscaminaConsola {
             miMina.regitrarJugada();
             miMina.calcularCasillasPorAbrir();
             if (miMina.terminoJuego()) {
-                
+                System.out.println("termino ");
             }
+            imprimitTablero();
         }        
         miMina.terminarJuego();
     }
 
-    private static void iniciarJuegoConsola(){
-       
-    }
-    
     public static void main(String[] args) {
         int bombas;       
         alto = preguntaTamanio();      
         ancho = preguntaTamanio();
         bombas = preguntaNumeroBombas();
         coordConsola= new CoordenadasPorConsola(alto, ancho);
-        miMina = new Juego(alto, ancho,bombas);        
-        iniciarJuegoConsola();
+        miMina = new Juego(alto, ancho,bombas);  
         jugarMinas();
     }
-
+    public static void imprimitTablero() {     
+        System.out.println(Arrays.deepToString(tableroJugador).replaceAll("],", "]," + System.getProperty("line.separator")));       
+    }
 }

@@ -2,7 +2,7 @@ package Minas;
 
 /**
  *
- * @author Noemi Guzman
+ * @author arquitectura de software I 2016
  */
 public class CasillasJuntasVacias {
 

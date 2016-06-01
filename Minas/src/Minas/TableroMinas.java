@@ -4,7 +4,7 @@ import java.util.Random;
 
 /**
  *
- * @author Noemi Guzman
+ * @author arquitectura de software I 2016
  */
 public class TableroMinas {
 
@@ -16,7 +16,7 @@ public class TableroMinas {
     private double tamanio;
     private static final int BOMBA_VALOR = -1;
     private TableroBombasJuntas tableroConCalculos;
-    
+    ImprimirTableroConsola ImprimirT; 
 
     TableroMinas(int alturaT, int anchoT) {
         altura = alturaT;
@@ -25,6 +25,7 @@ public class TableroMinas {
         tableroM = new int[altura][ancho];                
         validador = new ValidadorTablero();
         validador.copiarTamanioTablero(altura, ancho);
+        
         tableroConCalculos= new TableroBombasJuntas();
     }
     public int[][] copiarTableroMinas() {
@@ -37,6 +38,7 @@ public class TableroMinas {
             cargarBombasAleatorias(numeroBombas);
             tableroM=tableroConCalculos.calcularNumeroDeBombasJuntas(tableroM);
         }
+        ImprimirT.imprimitTablero(tableroM.clone());
         return tableroM.clone();
     }
     private void cargarBombasAleatorias(int numeroBombas) {
@@ -47,6 +49,7 @@ public class TableroMinas {
             cargarBombaEnCoordenadas(casillaXY[0], casillaXY[1]);
             bombasCargadas += 1;
         }
+       
 
     }
     private int[] optenerCasillaEnBlanco() {
@@ -58,7 +61,7 @@ public class TableroMinas {
             coordY = randomGenerator.nextInt(ancho - 1);
         } while (esBomba(coordX, coordY) != false);
         return new int[]{coordX, coordY};
-
+        
     }  
   
     public boolean esBomba(int x, int y) {

@@ -1,13 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Minas;
 
 /**
  *
- * @author Noemi Guzman
+ * @author arquitectura de software I 2016
  */
 class TableroBombasJuntas {
     ValidadorTablero validador;        
@@ -16,14 +12,16 @@ class TableroBombasJuntas {
 
     public TableroBombasJuntas() {
         validador = new ValidadorTablero();
+     
     }
 
     
     public int[][] calcularNumeroDeBombasJuntas(int[][] tablero) {
         tableroBJ=tablero.clone();
-        for (int coordX = 0; coordX <= tableroBJ.length - 1; coordX++) {
-            for (int coordY = 0; coordY <= tableroBJ[coordX].length- 1; coordY++) {
-                if (tableroBJ[coordX][coordY] == BOMBA_VALOR) {
+        validador.copiarTamanioTablero(tableroBJ.length, tableroBJ[0].length);
+        for (int coordX = 0; coordX <tableroBJ.length ; coordX++) {
+            for (int coordY = 0; coordY < tableroBJ[coordX].length; coordY++) {
+                if (tableroBJ[coordX][coordY] != BOMBA_VALOR) {
                     calcularBombasJuntasPorCasilla(coordX, coordY);
                 }
             }

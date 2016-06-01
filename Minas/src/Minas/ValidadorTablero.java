@@ -67,10 +67,10 @@ public class ValidadorTablero {
         boolean cordValida;
         cordValida = Boolean.FALSE;
         if ("X".equals(XY)) {
-            cordValida = (coordUsuario > 0 && coordUsuario < altura);
+            cordValida = (coordUsuario > 0 && coordUsuario <= altura);
         }
         if ("Y".equals(XY)) {
-            cordValida = (coordUsuario > 0 && coordUsuario < ancho);
+            cordValida = (coordUsuario > 0 && coordUsuario <= ancho);
         }
         return cordValida;
     }
