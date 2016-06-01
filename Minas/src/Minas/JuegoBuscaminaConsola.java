@@ -1,7 +1,6 @@
 package Minas;
 
 import java.util.Scanner;
-
 /**
  *
  * @author arquitectura de software I 2016
@@ -9,8 +8,13 @@ import java.util.Scanner;
 public class JuegoBuscaminaConsola {
 
     private static CoordenadasPorConsola coordConsola;
-   
-
+    private static Juego miMina;
+    private static int alto;
+    private static int ancho;
+    static int[][] tableroMain;
+    static String[][] tableroJugador;
+    private static final int BOMBA_VALOR = -1;
+    
     private static int preguntaTamanio() {
         return preguntarPorEntero("Ingrese el taño de tablero que desee jugar");
     }
@@ -40,42 +44,42 @@ public class JuegoBuscaminaConsola {
     private static boolean esInteger(Scanner entrada) {
         return (entrada.hasNextInt());
     }
-    public void jugarMinas() {
+    private static void jugarMinas() {
         boolean encontroBomba;
         int jugada[];
-        int jugadaX;
-        int jugadaY;
+        int jX;
+        int jY;
+        tableroMain=miMina.optenerTablero();
+        tableroJugador = new String[alto][ancho];
         encontroBomba = false;
         System.out.println("------------ Juego busca minas ----------- \n Para salir del jugo pressione 0 ");
         while (encontroBomba == false) {
             jugada = coordConsola.preguntarJugada();
-            jugadaX = jugada[0];
-            jugadaY = jugada[1];
-            abrirJugada(jugadaX, jugadaY);
-            encontroBomba = miMina.esBomba(jugadaX, jugadaY);
-        }
-       // imprimitTablero("Admin");
+            jX = jugada[0];
+            jY = jugada[1];       
+            tableroJugador[jX][jY]= Integer.toString(tableroMain[jX][jY]);
+            encontroBomba = tableroMain[jX][jY] ==BOMBA_VALOR;
+            miMina.regitrarJugada();
+            miMina.calcularCasillasPorAbrir();
+            if (miMina.terminoJuego()) {
+                
+            }
+        }        
+        miMina.terminarJuego();
     }
 
-    public int abrirJugada(int x, int y) {
-        int casilla;
-        casilla = abrirCasilla(x, y);
-        String[][] tableroJugador;
-        tableroJugador[x][y] = Integer.toString(casilla);
-        return casilla;
+    private static void iniciarJuegoConsola(){
+       
     }
+    
     public static void main(String[] args) {
-        int tamanio;
-        int bombas;
-        int alto;
-        int ancho;
-        alto = preguntaTamanio();
-      
+        int bombas;       
+        alto = preguntaTamanio();      
         ancho = preguntaTamanio();
         bombas = preguntaNumeroBombas();
         coordConsola= new CoordenadasPorConsola(alto, ancho);
-        Minas miMina = new Minas(alto, ancho);
-        miMina.cargarUnNumeroDeBombas(bombas);
+        miMina = new Juego(alto, ancho,bombas);        
+        iniciarJuegoConsola();
         jugarMinas();
     }
 

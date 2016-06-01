@@ -23,10 +23,10 @@ public class CoordenadasPorConsola {
         validador = new ValidadorTablero();
         validador.copiarTamanioTablero(alturaT, anchoT);
     }
-    private int[] preguntarJugada() {
+    public int[] preguntarJugada() {
         int coordUsuarioX;
         int coordUsuarioY;
-        imprimitTablero("Jugador");
+ 
         coordUsuarioX = preguntarCoordena("X");
         coordUsuarioY = preguntarCoordena("Y");
         return new int[]{coordUsuarioY - 1, coordUsuarioX - 1};
