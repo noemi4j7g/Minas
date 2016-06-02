@@ -19,13 +19,17 @@ public class Juego {
     ImprimirTableroConsola ImprimirT;  
     private static CoordenadasPorConsola coordConsola;
     private static final int BOMBA_VALOR = -1;
+    private TableroBombasJuntas tableroConCalculos;
+    
     public Juego(int alturaT, int anchoT, int nBombasT) {
         alturaTablero = alturaT;
         anchoTablero = anchoT;
-        nBombas = nBombasT;
+        nBombas = nBombasT;        
+        tableroConCalculos= new TableroBombasJuntas();
         miJuego = new TableroMinas(alturaTablero, anchoTablero);
-        miJuego.cargarUnNumeroDeBombas(nBombas);
-        tablero = miJuego.copiarTableroMinas();       
+        miJuego.cargarUnNumeroDeBombas(nBombas);        
+        tablero = miJuego.copiarTableroMinas();
+        tablero=tableroConCalculos.calcularNumeroDeBombasJuntas(tablero);
         iniciarJuego();
     }
 

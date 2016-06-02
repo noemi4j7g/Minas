@@ -4,13 +4,6 @@ import Minas.CasillasJuntasVacias;
 import Minas.Juego;
 import Minas.ValidadorTablero;
 
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author Noemi Guzman
@@ -65,7 +58,7 @@ public class Tablero extends javax.swing.JPanel {
         }
     }
     public static void abrirCasillaVacias(int x, int y) {
-        boolean[][] tableroV = CasillasJuntasVacias.casillaV(x, y, altoTablero, anchoTablero, tableroEnJuego);
+        boolean[][] tableroV = CasillasJuntasVacias.casillaV(x, y, tableroEnJuego);
         for (int fila = 0; fila < altoTablero; fila++) {
             for (int col = 0; col < anchoTablero; col++) {
                 if (tableroV[fila][col]) {

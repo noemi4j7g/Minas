@@ -25,6 +25,8 @@ public class ImprimirTableroConsola {
                  }
             }            
          }
-        System.out.println(Arrays.deepToString(tableroAImprimir).replaceAll("],", "]," + System.getProperty("line.separator")));       
+        System.out.println(Arrays.deepToString(tableroAImprimir).replaceAll("],", "]," + System.getProperty("line.separator"))); 
+        
+       
     }
 }

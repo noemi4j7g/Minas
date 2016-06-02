@@ -1,6 +1,5 @@
 package Minas;
 
-import java.util.Arrays;
 import java.util.Scanner;
 /**
  *
@@ -14,11 +13,11 @@ public class JuegoBuscaminaConsola {
     private static int ancho;
     static int[][] tableroMain;
     static String[][] tableroJugador;
-    private static final int BOMBA_VALOR = -1;
+
     ImprimirTableroConsola ImprimirT; 
 
     private static int preguntaTamanio() {
-        return preguntarPorEntero("Ingrese el taño de tablero que desee jugar");
+        return preguntarPorEntero("Ingrese el tamaño de tablero que desee jugar");
     }
 
     private static int preguntaNumeroBombas() {

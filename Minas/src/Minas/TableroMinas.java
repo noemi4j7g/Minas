@@ -1,5 +1,6 @@
 package Minas;
 
+import static java.lang.Integer.max;
 import java.util.Random;
 
 /**
@@ -14,11 +15,10 @@ public class TableroMinas {
     private int altura;
     private int ancho;
     private double tamanio;
-    private static final int BOMBA_VALOR = -1;
-    private TableroBombasJuntas tableroConCalculos;
+    private static final int BOMBA_VALOR = -1;    
     ImprimirTableroConsola ImprimirT; 
 
-    TableroMinas(int alturaT, int anchoT) {
+    public TableroMinas(int alturaT, int anchoT) {
         altura = alturaT;
         ancho = anchoT;
         tamanio = altura * ancho;
@@ -26,7 +26,6 @@ public class TableroMinas {
         validador = new ValidadorTablero();
         validador.copiarTamanioTablero(altura, ancho);
         
-        tableroConCalculos= new TableroBombasJuntas();
     }
     public int[][] copiarTableroMinas() {
         return tableroM.clone();
@@ -36,7 +35,7 @@ public class TableroMinas {
             System.out.println("El tablero es pequeño para el numero de Bombas");
         } else {
             cargarBombasAleatorias(numeroBombas);
-            tableroM=tableroConCalculos.calcularNumeroDeBombasJuntas(tableroM);
+    
         }
         ImprimirT.imprimitTablero(tableroM.clone());
         return tableroM.clone();
@@ -48,8 +47,7 @@ public class TableroMinas {
             int casillaXY[] = optenerCasillaEnBlanco();
             cargarBombaEnCoordenadas(casillaXY[0], casillaXY[1]);
             bombasCargadas += 1;
-        }
-       
+        }       
 
     }
     private int[] optenerCasillaEnBlanco() {
@@ -57,14 +55,14 @@ public class TableroMinas {
         int coordY;
         Random randomGenerator = new Random();
         do {
-            coordX = randomGenerator.nextInt(altura - 1);
-            coordY = randomGenerator.nextInt(ancho - 1);
+            coordX = randomGenerator.nextInt(max(altura - 1, 1));
+            coordY = randomGenerator.nextInt(max(ancho - 1, 1));
         } while (esBomba(coordX, coordY) != false);
         return new int[]{coordX, coordY};
         
     }  
   
-    public boolean esBomba(int x, int y) {
+    private boolean esBomba(int x, int y) {
         return abrirCasilla(x, y) == BOMBA_VALOR;
     }
 

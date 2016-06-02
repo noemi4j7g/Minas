@@ -1,7 +1,5 @@
 package Minas;
 
-import static Minas.JuegoBuscaminaConsola.tableroMain;
-
 /**
  *
  * @author arquitectura de software I 2016
@@ -13,10 +11,10 @@ public class CasillasJuntasVacias {
     static int altura;
     static int ancho;
 
-    public static boolean[][] casillaV(int X, int Y, int alturaT, int anchoT, int[][] tablero) {
+    public static boolean[][] casillaV(int X, int Y,  int[][] tablero) {
         tableroJ = tablero.clone();
-        altura = alturaT;
-        ancho = anchoT;
+        altura = tableroJ.length;
+        ancho = tableroJ[0].length;
         tableroVisible = new boolean[altura][ancho];
         buscar4Direcciones(X, Y, 0);
         return tableroVisible;

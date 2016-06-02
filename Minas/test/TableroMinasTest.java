@@ -1,66 +1,53 @@
 
-import Minas.Minas;
 import Minas.TableroMinas;
+import java.util.stream.IntStream;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author Noemi Guzman
  */
 public class TableroMinasTest {
-   /* @Test
-    public void testJuego6por6casillaCargar5Bombas() {
-        Minas juego = new Minas(6,6);
-        juego.cargarUnNumeroDeBombas(5);
-        int obtenido = juego.contadorBombas();
-        int esperado = 5;
-        assertEquals(esperado,obtenido);    
+    @Test
+    public void cargarUnTablero1por1sinbomba() {
+        TableroMinas juego = new TableroMinas(1,1); 
+        int [][] obtenido = juego.cargarUnNumeroDeBombas(0);
+        int [][] esperado = { {0} };
+        assertArrayEquals(esperado,obtenido);    
     }
     @Test
-    public void testJuego6por6casillaTratardeCargarMas80porciento() {
-        Minas juego35 = new Minas(6,6);
-        juego35.cargarUnNumeroDeBombas(35);
-        int obtenido = juego35.contadorBombas();
-        int esperado = 0;
-        assertEquals(esperado,obtenido);    
+    public void cargarUnTablero2por2sinbomba() {
+        TableroMinas juego = new TableroMinas(2,2); 
+        int [][] obtenido = juego.cargarUnNumeroDeBombas(0);
+        int [][] esperado = { {0,0}, {0,0}};
+        assertArrayEquals(esperado,obtenido);   
     }
     @Test
-    public void testJuego6por6casillaTiene5BombasCerca() {
-        Minas juego = new Minas(6,6);
-        juego.cargarBombasJuntas(5,3,2);
-        int obtenido = juego.abrirJugada(3,2);
-        int esperado = 5;
-        assertEquals(esperado,obtenido);    
+    public void cargarUnTablero2por2conbomba() {
+        TableroMinas juego = new TableroMinas(1,2); 
+        int [][] tablero = juego.cargarUnNumeroDeBombas(1);
+        int sum = IntStream.of(tablero[0]).sum();        
+        assertEquals(-1,sum);   
+    }
+    
+    @Test
+    public void testTablero6por6Tiene5Bombas() {
+        int sum = 0;
+        TableroMinas juego = new TableroMinas(6,6); 
+        int [][] tablero = juego.cargarUnNumeroDeBombas(5);     
+        for(int[] i: tablero) {
+            sum += IntStream.of(i).sum(); ;
+        }
+        assertEquals(-5,sum);    
     }
     @Test
-    public void testJuego6por6casillaTiene1BombaCerca() {
-        Minas juego = new Minas(6,6);
-        juego.cargarBombasJuntas(1,3,2);
-        int obtenido = juego.contadorBombas();
-        int esperado = 1;
-        assertEquals(esperado,obtenido);    
-    } 
-    @Test
-    public void testJuego6por6casillaTiene6BombasCercaBombaEncontrada() {
-        Minas juego = new Minas(6,6);
-        juego.cargarBombasJuntas(6,3,2);
-        boolean obtenido = juego.esBomba(3,3);
-        boolean esperado = true;
-        assertEquals(esperado,obtenido);    
+    public void testCopiarTableroSinBombas() {
+        
+        TableroMinas juego = new TableroMinas(6,2); 
+        int [][] obtenido = juego.copiarTableroMinas();  
+        int [][] esperado = { {0,0}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0}};        
+        assertArrayEquals(esperado,obtenido);    
     }
-    @Test
-    public void testJuego6por6casillaTiene0BombasCercaNoBombaEncontrada() {
-        Minas juego = new Minas(6,6);
-        juego.cargarBombasJuntas(0,3,2);
-        boolean obtenido = juego.esBomba(3,3);
-        boolean esperado = false;
-        assertEquals(esperado,obtenido);    
-    }*/
+
 }
