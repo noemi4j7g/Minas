@@ -49,5 +49,11 @@ public class TableroMinasTest {
         int [][] esperado = { {0,0}, {0,0}, {0,0}, {0,0}, {0,0}, {0,0}};        
         assertArrayEquals(esperado,obtenido);    
     }
+    @Test(expected = UnsupportedOperationException.class)
+    public void tratarDeCargarMuchasBombas() throws Exception {
+      // raises an exception, because the convert method was called
+        TableroMinas juego = new TableroMinas(6,6); 
+        int [][] tablero = juego.cargarUnNumeroDeBombas(55); 
+   }
 
 }

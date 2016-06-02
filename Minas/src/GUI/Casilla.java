@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
  *
  * @author arquitectura de software I 2016
  */
-
 public class Casilla extends JButton implements ActionListener {
 
     int valorCasilla;

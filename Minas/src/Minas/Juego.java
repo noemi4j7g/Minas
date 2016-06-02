@@ -62,6 +62,9 @@ public class Juego {
     public static boolean terminoJuego() {
         return terminoJuego;
     }
+    private int abrirCasilla(int jX,int jY){
+        return tableroMain[jX][jY];
+    }
     public  void jugarMinas() {
         boolean encontroBomba;
         int jugada[];
@@ -77,7 +80,7 @@ public class Juego {
             jugada = coordConsola.preguntarJugada();
             jX = jugada[0];
             jY = jugada[1];       
-            tableroJugador[jX][jY]= Integer.toString(tableroMain[jX][jY]);
+            tableroJugador[jX][jY]= Integer.toString(abrirCasilla(jX,jY));
             encontroBomba = tableroMain[jX][jY] ==BOMBA_VALOR;
             regitrarJugada();
             calcularCasillasPorAbrir();

@@ -32,7 +32,8 @@ public class TableroMinas {
     }
     public int[][] cargarUnNumeroDeBombas(int numeroBombas) {
         if (numeroBombas > tamanio * 0.8) {
-            System.out.println("El tablero es pequeño para el numero de Bombas");
+            throw new UnsupportedOperationException("El tablero es pequeño para el numero de Bombas.");
+
         } else {
             cargarBombasAleatorias(numeroBombas);
     

@@ -1,59 +1,81 @@
 
 
-import Minas.TableroMinas;
+import Minas.Juego;
+import java.util.stream.IntStream;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertEquals;
 
 /**
  * Tests for @link{Minas} class
  * @author arquitectura de software I 2016
 */
 public class JuegoTest {
-    /*
+    
     @Test
     public void testDestaparCasillaSinBomba() {
-        TableroMinas juego = new TableroMinas(1,1);
-        int [][] obtenido = juego.cargarUnNumeroDeBombas(0);
-        boolean esperado = false;
-        assertEquals(esperado,obtenido);
+        Juego juegoM = new Juego(1,1,0);
+        int [][] obtenido = juegoM.optenerTablero();       
+        int [][] esperado = { {0} };
+        assertArrayEquals(esperado,obtenido);   
     }
-    @Test
+    @Test(expected = UnsupportedOperationException.class)
     public void testDestaparCasillaConBomba() {
-        Minas juego = new TableroMinas(1,1);
-        juego.cargarBombas11();
-        boolean obtenido = juego.esBomba(0,0);
-        boolean esperado = true;
-        assertEquals(esperado,obtenido);    
+        Juego juegoM = new Juego(1,1,1);
+        int [][] obtenido = juegoM.optenerTablero(); 
+      
     }
     
     @Test
     public void testJuego2por2ConBomba() {
-        Minas juego = new Minas(2,2);
-        juego.cargarBombas11();
-        boolean obtenido = juego.esBomba(0,0);
-        boolean esperado = true;
-        assertEquals(esperado,obtenido);    
+        Juego juegoM = new Juego(1,2,1);
+        int [][] tablero = juegoM.optenerTablero();       
+        int  esperado = 0; //1 y -1
+        int obtenido = IntStream.of(tablero[0]).sum();        
+        assertEquals(esperado,obtenido);   
+      
+       
     }
     
     @Test
     public void testJuego2por2SinBomba() {
-        Minas juego = new Minas(2,2);
-        juego.cargarBombas11();
-        boolean obtenido = juego.esBomba(1,0);
-        boolean esperado = false;
-        assertEquals(esperado,obtenido);    
+        int sum=0;
+        Juego juegoM = new Juego(2,2,0);
+        int [][] tablero = juegoM.optenerTablero();       
+        int  esperado = 0; 
+        for(int[] i: tablero) {
+            sum += IntStream.of(i).sum(); ;
+        }       
+        assertEquals(esperado,sum);   
     }   
     
-  /*  @Test
-    public void testJuego3por3casillaCercaDeUnaBomba1() {
-        Minas juego = new Minas(3,3);
-        juego.cargarBombasJuntas(1,0,0);
-        int obtenido = juego.abrirJugada(0,0);
-        int esperado = 1;
+    @Test
+
+    public void testJuego3por3casillaterminarCon8Jugadas() {
+        Juego juegoM = new Juego(3,3,1);
+        int [][] tablero = juegoM.optenerTablero();
+        for (int i=0;i<9;i++){
+            juegoM.regitrarJugada();
+        }  
+        juegoM.calcularCasillasPorAbrir();
+        boolean obtenido = juegoM.terminoJuego();
+        boolean esperado = true;
         assertEquals(esperado,obtenido);    
     }
+    @Test
     
+    public void testJuego3por3casillaNoterminaroCon3Jugadas() {
+        Juego juegoM = new Juego(3,3,1);
+        int [][] tablero = juegoM.optenerTablero();
+        for (int i=0;i<3;i++){
+            juegoM.regitrarJugada();
+        }            
+        juegoM.calcularCasillasPorAbrir();
+        boolean obtenido = juegoM.terminoJuego();
+        boolean esperado = false;
+        assertEquals(esperado,obtenido);    
+    }
+    /*
     @Test
     public void testJuego3por3casillaCercaDeDosBombas() {
         Minas juego = new Minas(3,3);

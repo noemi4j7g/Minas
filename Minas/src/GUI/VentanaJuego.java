@@ -138,7 +138,7 @@ public class VentanaJuego extends javax.swing.JFrame {
     }
 
     private void bt_jugarActionPerformed(java.awt.event.ActionEvent evt) {
-        
+
         leerTamanioTablero();
         panelMain.removeAll();
         addComponentes();
@@ -146,11 +146,11 @@ public class VentanaJuego extends javax.swing.JFrame {
         panel_juego = new Tablero(altoTablero, anchoTablero, nBombas);
         panel_juego.setBackground(Color.blue);
         panelMain.add(panel_juego);
-        
+
         this.paintAll(this.getGraphics());
-      
-        System.out.println("Tablero cargado " );
-       
+
+        System.out.println("Tablero cargado ");
+
     }
 
     /**
