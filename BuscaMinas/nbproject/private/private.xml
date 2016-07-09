@@ -4,13 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/Tablero/TableroLleno.java</file>
+            <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/GUI/NivelCasilla.java</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/Tablero/Tablero.java</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/juego/Juego.java</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/nbproject/build-impl.xml</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/juego/MarcarCelda.java</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/GUI/GUI.java</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/GUI/CasillaGUI.java</file>
-            <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/GUI/CasillaTablero.java</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/Tablero/ListaMinas.java</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/juego/MarcarRecursivo.java</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/InterfazConsola/Consola.java</file>
@@ -18,6 +18,7 @@
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/MainJuego/JuegoAbierto.java</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/GUI/Nivel.java</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/Tablero/Celda.java</file>
+            <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/GUI/ActualizarLabel.java</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/MainJuego/JuegoObservado.java</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/GUI/LabelEstado.java</file>
             <file>file:/C:/Arqui/BuscaMinas20160620/BuscaMinas/src/InterfazConsola/PrintConsola.java</file>

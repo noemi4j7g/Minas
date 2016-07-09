@@ -39,10 +39,8 @@ public class GUI implements JuegoAbierto, ActionListener {
         juego = new JMenu("Game");
         help = new JMenu("Help");      
         restart = new JMenuItem("Restart");
-        info = new JMenuItem("Information");
-       
-        
-        
+        info = new JMenuItem("Information");    
+                
         juego.add(restart);
         help.add(info);
         barra.add(juego);

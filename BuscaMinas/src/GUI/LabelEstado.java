@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Tablero.Tablero;
 import java.awt.Color;
 import javax.swing.JLabel;
 
@@ -28,4 +29,5 @@ public class LabelEstado extends JLabel{
             this.setText("YOU LOSE!!!");            
         }
     }
+
 }
