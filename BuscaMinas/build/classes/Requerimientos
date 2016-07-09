@@ -1,0 +1,28 @@
+TO DO:
+
+
+21.Activar todas las despues de marcar una;
+
+
+
+DONE:
+1.Generar un tablero de 1x1,que se pueda marcar sin bomba.
+2.Generar un tablero de 1x1,que se pueda marcar con bomba.
+3.Generar un tablero de 2x2, que se pueda marcar sin bomba.
+4.Generar un tablero de 2x2, que se pueda marcar con bomba.
+5.Generar un tablero de nxn, que se pueda maracar sin bomba.
+6.Generar un tablero de nxn, que se pueda maracar con bomba.
+7.Generar el nro de minas de acuerdo a un porcentaje sobre el total celdas.
+8.Dar posiciones aleatorias dentro del tablero a cada minas;
+9.Llenar el perimetro con 1's en una bomba.
+10.llenar el perimetro con 1's en dos bombas.
+11.llenar el perimetro con 1's en 4 bombas.
+12.Generar lista de Minas de acuerdo al tablero lleno.
+13.Generar lista de Espacios de acuerdo al tablero lleno.
+14.Generar lista de Numeros adyacentes a una mina de acuerdo al tablero lleno.
+15.Marcar una celda con bomba y que el juego acabe.
+16.Marcar una celda sin bomba, y que el juego aun este activo.
+17.Marcar una celda con bomba, que devuelda 0, la celda contenia no es libre.
+18.Marcar una celda adyacente a la  bomba, que devuelda uno, por unica celda marcada.
+19.Marcar una celda libre, descubrir los espacios,devolver el nro de celdas abiertas.
+20.Verificar el estado de Victoria para el juego.
